@@ -43,3 +43,45 @@ The `/hardware-logs` directory tracks real-time configurations, terminal scrollb
 1. **Outbound Traffic Mitigation:** Utilizing **LuLu Application Firewall** rules on Apple Silicon architectures to enforce local storage policies and block software endpoints from transmitting metrics outside the network boundary.
 2. **Physical OS Provisioning ("Sneaker Moonwalk"):** Complete deletion of consumer operating systems on legacy architectures to establish dedicated, bare-metal **Kali Linux environments** for isolated forensic analysis.
 3. **Layer 2 MAC Hardening:** Implementing strict port security protocols on the enterprise switch core to eliminate lateral network traffic vectors.
+
+---
+
+### 🏗️ Systems Architecture
+
+```mermaid
+graph TD
+    User([User Interface]) -->|Interacts with| GUI[Ghost_UI.py]
+    GUI -->|Sends Prompts| Ollama[Local Ollama Engine]
+    Ollama -->|Reads Config| Modelfile[Custom Modelfile]
+    GUI -->|Logs Events| SecOps[Network Defense Layer]
+    SecOps -->|Hardens System| Environment[Air-Gapped Lab]
+```
+
+---
+
+### 🚀 Air-Gapped Installation Guide
+
+Follow these steps to deploy this framework in an offline, hardened environment:
+
+1. **Download Assets (Internet-Connected Machine)**
+   * Clone this repository: `git clone https://github.com`
+   * Download the required local Ollama model weights from the official source.
+
+2. **Transfer to Lab (Physical Media)**
+   * Move the cloned repository folder and model files onto a secure, formatted USB drive.
+   * Transfer the files directly onto your isolated, air-gapped machine.
+
+3. **Initialize the Local AI**
+   * Navigate to your repository directory on the offline machine.
+   * Build your custom model using the command-line tool:
+     ```bash
+     ollama create secure-agent -f Modelfile
+     ```
+
+4. **Launch the Framework**
+   * Run the Python user interface to begin monitoring:
+     ```bash
+     python Ghost_UI.py
+     ```
+
+

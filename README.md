@@ -25,7 +25,7 @@ This lab actively maps, monitors, and isolates a complex home network environmen
 | **Dinosaur** | 2015 iMac (macOS) | Dedicated Network Packet Analysis / Wireshark Node |
 | **Bashful**  | Mac M4 2025 (macOS) | Core Production Node / LuLu Outbound Filtered |
 
----
+----
 
 ## 💻 Core Component 2: The AthenaPsyche Terminal Engine
 Located in the `/python-portfolio` directory, this is an interactive Python-based system engine that translates behavioral loops and network logs into executable logic models.

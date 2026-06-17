@@ -18,7 +18,7 @@ This lab actively maps, monitors, and isolates a complex home network environmen
 | Device Name | Hardware Configuration & Operating System | Security Operational Profile |
 | :--- | :--- | :--- |
 | **Shadow** | Cisco Catalyst 3850 Switch (Cisco IOS) | Enterprise Core Layer / Stealth Line Isolation |
-| **Grumpy** | Nighthawk RS600 Router | Central Gateway Routing Node |
+| **Grumpy** | Nighthawk Router | Central Gateway Routing Node |
 | **Dragonia**| 2017 MacBook Air (macOS) | **Air-Gapped** Administration Node via Console Line |
 | **Dopy**     | 2015 MacBook Pro (**Bare-Metal Kali Linux**) | **Air-Gapped** Forensic & Penetration Testing Node |
 | **Felidity** | Digital Storm Desktop (Windows/Linux) | **Offline** Isolated Local AI Engine / Sneakernet |

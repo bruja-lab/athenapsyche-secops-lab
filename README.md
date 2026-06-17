@@ -8,26 +8,9 @@ This repository documents the structural engineering, deployment, and ongoing se
 
 ## 🎛️ Operational Philosophy: System Exceptions ("Hiccups")
 In this architecture, trauma-induced psychological episodes are modeled as **"System Hiccups"** rather than static triggers. This programmatic framing accounts for variable-duration runtime interruptions—capturing both short-burst disruptions and prolonged processing loops—without conforming to traditional, legacy clinical scripts.
-
----
-
-## 🔌 Core Component 1: Physical Lab Topology & Hardware Grid
-This lab actively maps, monitors, and isolates a complex home network environment using specialized security perimeters, physical air-gaps, and application firewalls.
-
-
-| Device Name | Hardware Configuration & Operating System | Security Operational Profile |
-| :--- | :--- | :--- |
-| **Shadow** | Cisco Catalyst 3850 Switch (Cisco IOS) | Enterprise Core Layer / Stealth Line Isolation |
-| **Grumpy** | Nighthawk Router | Central Gateway Routing Node |
-| **Dragonia**| 2017 MacBook Air (macOS) | **Air-Gapped** Administration Node via Console Line |
-| **Dopy**     | 2015 MacBook Pro (**Bare-Metal Kali Linux**) | **Air-Gapped** Forensic & Penetration Testing Node |
-| **Felidity** | Digital Storm Desktop (Windows/Linux) | **Offline** Isolated Local AI Engine / Sneakernet |
-| **Dinosaur** | 2015 iMac (macOS) | Dedicated Network Packet Analysis / Wireshark Node |
-| **Bashful**  | Mac M4 2025 (macOS) | Core Production Node / LuLu Outbound Filtered |
-
 ----
 
-## 💻 Core Component 2: The AthenaPsyche Terminal Engine
+## 💻 Core Component The AthenaPsyche Terminal Engine
 Located in the `/python-portfolio` directory, this is an interactive Python-based system engine that translates behavioral loops and network logs into executable logic models.
 * **Pillar 1:** Core HPA-Axis Cortisol saturation modeling utilizing randomized data arrays.
 * **Pillar 2:** Behavioral memory degradation simulated via high-loss data compression algorithms.
@@ -36,7 +19,7 @@ Located in the `/python-portfolio` directory, this is an interactive Python-base
 
 ---
 
-## 📑 Core Component 3: The SecOps Log Ledger (140+ Entry Archive)
+## 📑 Core Component The SecOps Log Ledger (140+ Entry Archive)
 The `/hardware-logs` directory tracks real-time configurations, terminal scrollback forensic recoveries, and strict hardware provisioning rules.
 
 ### Defensive Deployments Documented:

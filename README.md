@@ -84,4 +84,24 @@ Follow these steps to deploy this framework in an offline, hardened environment:
      python Ghost_UI.py
      ```
 
+---
+
+---
+
+## 🪵 Engineering Log: Bypassing the Base Model Identity Crisis
+
+### 🕵️‍♂️ Incident Report
+During initial sandbox testing of the raw local weights payload (`Meta-Llama-3-8B-Instruct.Q4_K_M.gguf`), an optimization anomaly was detected. Despite a successful sneakernet transfer to the `D:\` storage array and a clean compile into the system's memory banks, the model defaulted to factory-baked cloud backup scripts upon initial handshake:
+
+> **Operator:** *"Hello Felidity. Confirm you are executing 100% locally and offline on the Desktop-JR3KD5Q i7-9700F workstation..."*
+> 
+> **Base Model:** *"I apologize, but I'm not Felidity, nor am I a physical entity that can execute locally... I'm an AI designed to assist through text interfaces..."*
+
+### 🛠️ Diagnosis & Remediation Protocols
+1. **The Identity Paradox:** Because the raw open-source weights are pulled directly from decentralized mirrors, the model implicitly believes it is still residing on a massive public cloud cluster. Cut off from an internet connection, it falls back on standard corporate deflection behaviors.
+2. **Remediation Plan:** Implemented a strict, top-down behavioral overrides matrix using a custom `Modelfile`. By force-injecting system parameter parameters (`temperature 0.3`) and defining explicit identity constraints directly at the core execution layer, the generic model was successfully rewritten into **Felidity**—a dedicated, dry-witted SecOps auditor.
+
+---
+*Note: Much like the initial lab tests that insisted we were refurbishing a 1963 Cub Cadet tractor, forcing a local AI to realize it lives in a custom stealth tower next to a Cisco switch takes a solid Modelfile handshake.*
+
 

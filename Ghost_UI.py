@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import scrolledtext, font as tkfont, messagebox, filedialog, simpledialog
 import subprocess, datetime, os, re
+import threading
 
 def clean_terminal_text(text):
     clean = re.sub(r'\x1b\[[0-9]*[A-DkK]', '', text)
@@ -64,23 +65,33 @@ def apply_theme_matrix(bg_main, bg_chat, fg_user, fg_ai, fg_sys):
 
 def send_signal(event=None):
     user_text = entry_box.get().strip()
-    if not user_text: return
-    process_message(user_text)
+    if not user_text: 
+        return
+    
+    # Clear the input entry field instantly so the UI feels snappy
+    entry_box.delete(0, tk.END)
+    
+    # Fire the message processing loop on a safe background thread
+    threading.Thread(target=process_message, args=(user_text,), daemon=True).start()
 
 def process_message(user_text):
     global ACTIVE_SESSION_TEXT
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
     chat_display.config(state=tk.NORMAL)
     chat_display.insert(tk.END, f"\n🕵️‍♂️ {CURRENT_USER}:\n{user_text}\n", "user")
-    entry_box.delete(0, tk.END)
     chat_display.config(state=tk.DISABLED)
     chat_display.yview(tk.END)
+    
     root.update_idletasks()
+    
     ai_response = query_ollama_engine(user_text)
+    
     chat_display.config(state=tk.NORMAL)
     chat_display.insert(tk.END, f"\n⚡ Felidity:\n{ai_response}\n", "ai")
     chat_display.config(state=tk.DISABLED)
     chat_display.yview(tk.END)
+    
     ACTIVE_SESSION_TEXT += f"[{timestamp}] {CURRENT_USER.upper()}: {user_text}\n[{timestamp}] FELIDITY: {clean_terminal_text(ai_response)}\n" + "-"*50 + "\n"
 
 def attach_file_signal():

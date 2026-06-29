@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import scrolledtext, font as tkfont, messagebox, filedialog, simpledialog
 import subprocess, datetime, os, re
 import threading
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 def clean_terminal_text(text):
     clean = re.sub(r'\x1b\[[0-9]*[A-DkK]', '', text)
@@ -104,6 +107,49 @@ def attach_file_signal():
         chat_display.insert(tk.END, f"\n📁 [INJECTED ASSET: {file_name}]\n", "system")
         chat_display.config(state=tk.DISABLED)
         process_message(f"[INJECTED LOCAL FILE DATA: {file_name}]\n\n{file_content}\n\nAnalyze this data asset based on your protocols.")
+
+    def embed_behavioral_stats_hud():
+    # Clear any stale graphics sitting inside the right panel cage
+    for widget in right_analytics_panel.winfo_children():
+        widget.destroy()
+
+    # Ingest raw data array from your verified spss_bypass repository spec
+    raw_data = [
+        "Psychology", "Sociology", "Sociology", "Psychology", "Psychology",
+        "Psychology", "Psychology", "Psychology", "Psychology", "History",
+        "Communications", "Sociology", "Other", "Other", "Business",
+        "Sociology", "Psychology", "Psychology", "Psychology", "History",
+        "Political Science", "Sociology", "Psychology", "Psychology", "Psychology",
+        "Psychology", "Sociology", "Anthropology", "Other", "Psychology"
+    ]
+    df = pd.DataFrame(raw_data, columns=['Major_Label'])
+    coding_map = {
+        "Psychology": 1, "Sociology": 2, "History": 3, "Communications": 4,
+        "Business": 5, "Political Science": 6, "Anthropology": 7, "Other": 8
+    }
+    
+    plot_data = df.groupby('Major_Label').size().reindex(list(coding_map.keys()))
+
+    # Build the specialized dashboard sidebar layout figure
+    fig, ax = plt.subplots(figsize=(4, 5), facecolor="#121212")
+    plot_data.plot(kind='bar', color='mediumpurple', edgecolor='black', ax=ax)
+    
+    # Force dark matrix theme formatting variables
+    ax.set_facecolor("#161616")
+    ax.set_title('Student Majors Survey (N=30)', color='#ffffff', fontsize=10, fontweight='bold')
+    ax.set_ylabel('Frequency', color='#ffffff', fontsize=8)
+    ax.set_xlabel('Coded Majors (1-8)', color='#ffffff', fontsize=8)
+    ax.tick_params(colors='#ffffff', labelsize=7)
+    plt.xticks(rotation=45, ha='right')
+    ax.grid(axis='y', linestyle='--', alpha=0.2, color='#ffffff')
+    plt.tight_layout()
+
+    # Mount the canvas engine directly into the Tkinter sidebar cage
+    canvas = FigureCanvasTkAgg(fig, master=right_analytics_panel)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+    plt.close(fig)
+
     except Exception as e: messagebox.showerror("Injection Failure", f"Could not read local data asset: {e}")
 
 def clear_screen():
@@ -158,10 +204,21 @@ btn_cyber.pack(side=tk.RIGHT, padx=3, pady=10)
 btn_matrix = tk.Button(top_bar, text="MATRIX", bg="#121212", fg="#ff007f", command=lambda: apply_theme_matrix("#121212", "#1a1a1a", "#00ffcc", "#ff007f", "#7f7f7f"), bd=0, padx=5)
 btn_matrix.pack(side=tk.RIGHT, padx=3, pady=10)
 
-main_body = tk.Frame(root, bg="#121212")
-main_body.pack(fill=tk.BOTH, expand=True)
+# Create a master main container window frame split
+master_container = tk.Frame(root, bg="#121212")
+master_container.pack(fill=tk.BOTH, expand=True)
 
-sidebar_frame = tk.Frame(main_body, bg="#161616", width=200)
+# LEFT PANEL: Core Chat HUD Terminal Console Interface
+left_hud_panel = tk.Frame(master_container, bg="#121212")
+left_hud_panel.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+# RIGHT PANEL: Embedded Statistics Graph Sidebar Cage
+right_analytics_panel = tk.Frame(master_container, width=320, bg="#111111", bd=2, relief=tk.SUNKEN)
+right_analytics_panel.pack(side=tk.RIGHT, fill=tk.BOTH, expand=False, padx=10, pady=10)
+right_analytics_panel.pack_propagate(False) # Preserves strict width geometry settings
+
+
+sidebar_frame = tk.Frame(left_hud_panel, bg="#161616", width=200)
 sidebar_frame.pack(side=tk.LEFT, fill=tk.Y, padx=(20, 0), pady=20)
 sidebar_title = tk.Label(sidebar_frame, text="PAST MISSIONS", bg="#161616", fg="#7f7f7f", font=("Consolas", 9, "bold"))
 sidebar_title.pack(pady=5)
@@ -169,7 +226,7 @@ sidebar = tk.Listbox(sidebar_frame, bg="#1a1a1a", fg="#00ffcc", bd=0, font=("Con
 sidebar.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 sidebar.bind("<<ListboxSelect>>", load_past_chat)
 
-chat_frame = tk.Frame(main_body, bg="#121212")
+chat_frame = tk.Frame(left_hud_panel, bg="#121212")
 chat_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=20, pady=20)
 chat_display = scrolledtext.ScrolledText(chat_frame, wrap=tk.WORD, bg="#1a1a1a", fg="#ffffff", font=custom_font, bd=0, highlightthickness=0)
 chat_display.pack(fill=tk.BOTH, expand=True, pady=(0, 15))
@@ -194,4 +251,5 @@ root.destroy()
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
 refresh_sidebar()
+embed_behavioral_stats_hud()
 root.mainloop()
